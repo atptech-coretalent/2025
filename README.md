@@ -1,95 +1,89 @@
-# ATP Core Talent 2025
-# Core Talent AI Coder Challenge: Camera Movement Detection
+# 📷 Camera Movement Detector
 
-**Detecting Significant Camera Movement Using Image Recognition**
-
----
-
-## Scenario
-
-Imagine you are tasked with building a component for a smart camera system. Your goal is to detect **significant movement**—for example, if someone moves or tilts the camera or if the entire camera is knocked or shifted. This is different from simply detecting moving objects in the scene.
+This project was developed as part of the **ATP Core Talent AI Coder Challenge 2025**.  
+It is a Streamlit-based web application that analyzes uploaded videos and detects **significant camera movements** such as panning, tilting, or shaking.  
+It does **not** focus on object motion — instead, it detects changes in the global scene indicating that the camera itself moved.
 
 ---
 
-## Requirements
+## 📷 Screenshot
 
-1. **Input:**
+![Camera Detector Screenshot](https://github.com/user-attachments/assets/90a2831b-2218-42a6-8172-f3ee63661157)
 
-   * A sequence of images or frames (at least 10-20), simulating a fixed camera, with some frames representing significant camera movement (tilt, pan, large translation), and others showing a static scene or minor background/object motion.
-   * You may use public datasets, generate synthetic data, or simulate with your own webcam.
+## 🚀 Live App
 
-     * Example: [CameraBench Dataset on Hugging Face](https://huggingface.co/datasets/syCen/CameraBench)
-2. **Task:**
-
-   * Build an algorithm (**Python preferred**) that analyzes consecutive frames and detects when significant camera movement occurs.
-   * Output a list of frames (by index/number) where significant movement is detected.
-3. **Expected Features:**
-
-   * **Basic:** Frame differencing or feature matching to detect large global shifts (e.g., using OpenCV’s ORB/SIFT/SURF, optical flow, or homography).
-   * **Bonus:** Distinguish between camera movement and object movement within the scene (e.g., use keypoint matching, estimate transformation matrices, etc.).
-4. **Deployment:**
-
-   * Wrap your solution in a small web app (**Streamlit, Gradio, or Flask**) that allows the user to upload a sequence of images (or a video), runs the detection, and displays the result.
-   * Deploy the app on a public platform (**Vercel, Streamlit Cloud, Hugging Face Spaces**, etc.)
-5. **Deliverables:**
-
-   * Public app URL
-   * GitHub repo (with code and requirements.txt)
-   * README (explaining your approach, dataset, and how to use the app)
-
-     * **Sample README Outline:**
-
-       * Overview of your approach and movement detection logic
-       * Any challenges or assumptions
-       * How to run the app locally
-       * Link to the live app
-       * Example input/output screenshots
-   * AI Prompts or Chat History (if used for support)
+🔗 [Click here to try the app online](https://your-deployment-url.com)  
+(Replace this with your Streamlit or Hugging Face link after deployment)
 
 ---
 
-## Evaluation Rubric
+## 🎯 Features
 
-| Criteria           | Points | Details                                                                                    |
-| ------------------ | ------ | ------------------------------------------------------------------------------------------ |
-| **Correctness**    | 5      | Accurately detects significant camera movement; low false positives/negatives.             |
-| **Implementation** | 5      | Clean code, good use of OpenCV or relevant libraries, modular structure.                   |
-| **Deployment**     | 5      | App is online, easy to use, and functions as described.                                    |
-| **Innovation**     | 3      | Advanced techniques (feature matching, transformation estimation, clear object vs camera). |
-| **Documentation**  | 2      | Clear README, instructions, and concise explanation of method/logic.                       |
+- 📼 Upload a video (MP4, AVI, MOV)
+- 🎞️ Extracts and analyzes frames
+- 🎯 Detects significant camera movement (not object motion)
+- 💡 Clean, modern UI with ATP branding
 
 ---
 
-## Suggested Stack
+## 🧠 Approach
 
-* **Python** or **C#**
-* **OpenCV** for computer vision
-* **Streamlit**, **Gradio**, or a **shadcn-powered Vercel site** for quick web UI
-* **GitHub** for code repo, **Streamlit Cloud**, **Hugging Face Spaces**, or **Vercel** for deployment
-
----
-
-# 📋 Candidate Instructions
-
-1. **Fork this repository** (or start your own repository with the same structure).
-2. **Implement your movement detection algorithm** in `movement_detector.py`.
-3. **Develop a simple web app** (`app.py`) that allows users to upload images/sequences and view detection results.
-4. **Deploy your app** on a public platform (e.g., Streamlit Cloud, Hugging Face Spaces, Vercel, Heroku) and **share both your deployed app URL and GitHub repository link**.
-5. **Document your work**: Include a `README.md` that explains your approach, how to run your code, and sample results (with screenshots or example outputs).
+- **Frame Extraction:** Extracts all frames from the video using OpenCV.
+- **Feature Detection & Matching:** ORB feature detector is used to compare consecutive frames.
+- **Homography Transformation:** Calculates transformation matrix to estimate global scene shift.
+- **Movement Decision:** If the transformation deviates above a threshold, it is classified as camera movement.
+- **Bonus Logic:** Tries to filter out object motion by comparing matched keypoints and transformation consistency.
 
 ---
 
-**Deadline:**
-🕓 **27.06.2025**
+## 🛠️ Tech Stack
+
+- **Python 3.13**
+- **OpenCV**
+- **Streamlit** (for UI)
+- **Datasets** from Hugging Face (for CameraBench demo data)
+- **NumPy** for numerical processing
 
 ---
 
-**Plagiarism Policy:**
+## 📦 Installation
 
-* This must be **individual, AI-powered work**.
-* You may use open-source libraries, but you **must cite** all external resources and code snippets.
-* Do not submit work copied from others or from the internet without proper acknowledgment.
+To run locally:
 
----
+```bash
+git clone https://github.com/yourusername/camera-detector.git
+cd camera-detector
+pip install -r requirements.txt
+streamlit run app.py
+```
 
-**Good luck! Show us your best hands-on AI skills!**
+## 📁 File Structure
+
+```bash
+camera-detector/
+├── app.py                 # Streamlit web UI
+├── movement_detector.py   # Core detection logic
+├── requirements.txt       # Dependencies
+├── README.md              # This file
+```
+
+### 📸 Example Output
+
+Input: Sample video with camera shake
+
+#### Output:
+
+```bash
+
+📌 Detected camera movement at frame indices: [6, 7, 8, 10, 15, 22, 23, 24]
+```
+## 💬 Acknowledgements
+
+* Hugging Face CameraBench Dataset
+* ATP Core Talent Team for organizing the challenge
+
+## 🧑‍💻 Developed by
+
+* Saadet Elizaveta Babal
+* Candidate – ATP Core Talent AI Coder Challenge 2025
+
